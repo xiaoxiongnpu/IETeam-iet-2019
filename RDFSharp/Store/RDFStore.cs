@@ -311,6 +311,9 @@ namespace RDFSharp.Store
                     case RDFStoreEnums.RDFFormats.TriX:
                         RDFTriX.Serialize(this, filepath);
                         break;
+					default:
+						throw new NotImplementedException();
+						break;
                 }
             }
             else
@@ -335,6 +338,7 @@ namespace RDFSharp.Store
                         RDFTriX.Serialize(this, outputStream);
                         break;
 					default:
+						throw new NotImplementedException();
 						break;
                 }
             }

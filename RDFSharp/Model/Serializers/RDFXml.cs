@@ -165,6 +165,7 @@ namespace RDFSharp.Model
                                     subjNode = rdfDoc.CreateNode(XmlNodeType.Element, RDFVocabulary.RDF.PREFIX + ":Alt", RDFVocabulary.RDF.BASE_URI);
                                     break;
 								default:
+									throw new NotImplementedException();
 									break;
                             }
                             containersXML.Add(subjHash, subjNode);

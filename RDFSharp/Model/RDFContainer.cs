@@ -121,6 +121,9 @@ namespace RDFSharp.Model
                     case RDFModelEnums.RDFContainerTypes.Seq:
                         this.Items.Add(item);
                         break;
+					default:
+						throw new NotImplementedException();
+						break;
                 }
             }
             return this;
@@ -146,6 +149,9 @@ namespace RDFSharp.Model
                     case RDFModelEnums.RDFContainerTypes.Seq:
                         this.Items.Add(item);
                         break;
+					default:
+						throw new NotImplementedException();
+						break;
                 }
             }
             return this;
@@ -209,6 +215,7 @@ namespace RDFSharp.Model
                     reifCont.AddTriple(new RDFTriple(this.ReificationSubject, RDFVocabulary.RDF.TYPE, RDFVocabulary.RDF.ALT));
                     break;
 				default:
+					throw new NotImplementedException();
 					break;
             }
 

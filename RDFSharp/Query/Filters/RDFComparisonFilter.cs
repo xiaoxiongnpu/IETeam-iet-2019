@@ -177,6 +177,7 @@ namespace RDFSharp.Query
                                 keepRow = (comparison > 0);
                                 break;
 							default:
+								throw new NotImplementedException();
 								break;
                         }
                     }

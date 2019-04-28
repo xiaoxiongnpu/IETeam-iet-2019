@@ -1929,6 +1929,9 @@ namespace RDFSharp.Query
                             bindings.Add(pattern.Object.ToString(), t.Object.ToString());
                         }
                         break;
+					default:
+						throw new NotImplementedException();
+						break;
                 }
                 AddRow(resultTable, bindings);
                 bindings.Clear();
@@ -2076,6 +2079,7 @@ namespace RDFSharp.Query
                         }
                         break;
 					default:
+						throw new NotImplementedException();
 						break;
                 }
                 AddRow(resultTable, bindings);

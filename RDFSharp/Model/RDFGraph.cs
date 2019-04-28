@@ -517,6 +517,9 @@ namespace RDFSharp.Model
                     case RDFModelEnums.RDFFormats.Turtle:
                         RDFTurtle.Serialize(this, filepath);
                         break;
+					default:
+						throw new NotImplementedException();
+						break;
                 }
             }
             else
@@ -546,6 +549,9 @@ namespace RDFSharp.Model
                     case RDFModelEnums.RDFFormats.Turtle:
                         RDFTurtle.Serialize(this, outputStream);
                         break;
+					default:
+						throw new NotImplementedException();
+						break;
                 }
             }
             else
@@ -604,6 +610,9 @@ namespace RDFSharp.Model
                             return RDFTriX.Deserialize(filepath);
                         case RDFModelEnums.RDFFormats.Turtle:
                             return RDFTurtle.Deserialize(filepath);
+						default:
+							throw new NotImplementedException();
+							break;
                     }
                 }
                 throw new RDFModelException("Cannot read RDF graph from file because given \"filepath\" parameter (" + filepath + ") does not indicate an existing file.");
@@ -629,6 +638,7 @@ namespace RDFSharp.Model
                     case RDFModelEnums.RDFFormats.Turtle:
                         return RDFTurtle.Deserialize(inputStream);
 					default:
+						throw new NotImplementedException();
 						break;
                 }
             }
