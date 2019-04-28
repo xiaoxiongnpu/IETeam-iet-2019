@@ -113,7 +113,9 @@ namespace RDFSharp.Model
                     case RDFModelEnums.RDFContainerTypes.Alt:
                         //Avoid duplicates in case of "rdf:Alt" container
                         if (this.Items.Find(x => x.Equals(item)) == null)
+						{
                             this.Items.Add(item);
+						}
                         break;
                     case RDFModelEnums.RDFContainerTypes.Bag:
                         this.Items.Add(item);

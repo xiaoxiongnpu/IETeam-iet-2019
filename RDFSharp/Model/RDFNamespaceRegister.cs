@@ -175,7 +175,7 @@ namespace RDFSharp.Model
         /// <summary>
         /// Retrieves a namespace by seeking presence of its Uri.
         /// </summary>
-        public static RDFNamespace GetByUri(String uri, Boolean enablePrefixCCService = false)
+        public static RDFNamespace GetByUri(String uri, Boolean enablePrefixCCService)
         {
             if (uri != null)
             {
@@ -188,7 +188,20 @@ namespace RDFSharp.Model
             }
             return null;
         }
-
+		
+		/// <summary>
+        /// Retrieves a namespace by seeking presence of its Uri.
+        /// </summary>
+		public static RDFNamespace GetByUri(String uri)
+        {
+            if (uri != null)
+            {
+                var result = LookupPrefixCC(uri.Trim().TrimEnd(new Char[] { '#' }), 2);
+                return result;
+            }
+            return null;
+        }
+		
         /// <summary>
         /// Retrieves a namespace by seeking presence of its prefix.
         /// </summary>
@@ -201,6 +214,19 @@ namespace RDFSharp.Model
                 {
                     result = LookupPrefixCC(prefix.Trim(), 1);
                 }
+                return result;
+            }
+            return null;
+        }
+		
+		/// <summary>
+        /// Retrieves a namespace by seeking presence of its prefix.
+        /// </summary>
+        public static RDFNamespace GetByPrefix(String prefix)
+        {
+            if (prefix != null)
+            {
+                var result = LookupPrefixCC(prefix.Trim(), 1);
                 return result;
             }
             return null;
