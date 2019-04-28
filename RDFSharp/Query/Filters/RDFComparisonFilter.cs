@@ -176,6 +176,8 @@ namespace RDFSharp.Query
                             case RDFQueryEnums.RDFComparisonFlavors.GreaterThan:
                                 keepRow = (comparison > 0);
                                 break;
+							default:
+								break;
                         }
                     }
                 }

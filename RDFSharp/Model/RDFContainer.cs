@@ -208,6 +208,8 @@ namespace RDFSharp.Model
                 case RDFModelEnums.RDFContainerTypes.Alt:
                     reifCont.AddTriple(new RDFTriple(this.ReificationSubject, RDFVocabulary.RDF.TYPE, RDFVocabulary.RDF.ALT));
                     break;
+				default:
+					break;
             }
 
             //  Subject -> rdf:_N -> RDFContainer.ITEM(N)

@@ -2075,6 +2075,8 @@ namespace RDFSharp.Query
                             bindings.Add(pattern.Object.ToString(), q.Object.ToString());
                         }
                         break;
+					default:
+						break;
                 }
                 AddRow(resultTable, bindings);
                 bindings.Clear();

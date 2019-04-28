@@ -628,6 +628,8 @@ namespace RDFSharp.Model
                         return RDFTriX.Deserialize(inputStream);
                     case RDFModelEnums.RDFFormats.Turtle:
                         return RDFTurtle.Deserialize(inputStream);
+					default:
+						break;
                 }
             }
             throw new RDFModelException("Cannot read RDF graph from stream because given \"inputStream\" parameter is null.");

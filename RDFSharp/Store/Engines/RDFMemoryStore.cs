@@ -457,6 +457,8 @@ namespace RDFSharp.Store
                         return RDFTriX.Deserialize(inputStream);
                     case RDFStoreEnums.RDFFormats.NQuads:
                         return RDFNQuads.Deserialize(inputStream);
+					default:
+						break;
                 }
             }
             throw new RDFStoreException("Cannot read RDF memory store from stream because given \"inputStream\" parameter is null.");

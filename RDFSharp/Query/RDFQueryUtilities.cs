@@ -240,7 +240,7 @@ namespace RDFSharp.Query
                             //Accept the abbreviation only if it has generated a valid XSD QName
                             try
                             {
-                                var qn = new RDFTypedLiteral(pmString, RDFModelEnums.RDFDatatypes.XSD_QNAME);
+                                new RDFTypedLiteral(pmString, RDFModelEnums.RDFDatatypes.XSD_QNAME);
                                 abbrev = true;
                             }
                             catch

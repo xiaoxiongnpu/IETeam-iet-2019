@@ -334,6 +334,8 @@ namespace RDFSharp.Store
                     case RDFStoreEnums.RDFFormats.TriX:
                         RDFTriX.Serialize(this, outputStream);
                         break;
+					default:
+						break;
                 }
             }
             else

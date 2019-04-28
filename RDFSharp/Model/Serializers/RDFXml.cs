@@ -164,6 +164,8 @@ namespace RDFSharp.Model
                                 case RDFModelEnums.RDFContainerTypes.Alt:
                                     subjNode = rdfDoc.CreateNode(XmlNodeType.Element, RDFVocabulary.RDF.PREFIX + ":Alt", RDFVocabulary.RDF.BASE_URI);
                                     break;
+								default:
+									break;
                             }
                             containersXML.Add(subjHash, subjNode);
                         }
@@ -219,7 +221,7 @@ namespace RDFSharp.Model
                                                         .TrimEnd(new Char[] { ':', '/' });
                                 try
                                 {
-                                    var predUriQName = new RDFTypedLiteral(predUri, RDFModelEnums.RDFDatatypes.XSD_QNAME);
+                                    new RDFTypedLiteral(predUri, RDFModelEnums.RDFDatatypes.XSD_QNAME);
                                 }
                                 catch
                                 {
@@ -637,7 +639,7 @@ namespace RDFSharp.Model
                     if (attr.LocalName.ToUpperInvariant() != "XMLNS")
                     {
 
-                        //Try to resolve the current namespace against the namespace register; 
+                        //Try to resolve the current namespace against the namespace register
                         //if not resolved, create new namespace with scope limited to actual node
                         RDFNamespace ns =
                         (RDFNamespaceRegister.GetByPrefix(attr.LocalName) ??
