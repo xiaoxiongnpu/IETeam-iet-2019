@@ -275,7 +275,9 @@ namespace RDFSharp.Query
                 #region ENDSELECT
                 sb.Append("\n");
                 if (selectQuery.IsSubQuery)
+				{
                     sb.Append(subquerySpaces + "}\n");
+				}
                 #endregion
 
                 #endregion

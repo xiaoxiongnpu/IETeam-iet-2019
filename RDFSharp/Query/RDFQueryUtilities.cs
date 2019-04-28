@@ -213,7 +213,9 @@ namespace RDFSharp.Query
         {
             #region Prefix Search
             //Check if the pattern member starts with a known prefix, if so just return it
-            if (prefixes == null) prefixes = new List<RDFNamespace>();
+            if (prefixes == null) {
+				prefixes = new List<RDFNamespace>();
+			}
             var prefixToSearch = patternMember.ToString().Split(':')[0];
             var searchedPrefix = prefixes.Find(pf => pf.NamespacePrefix.Equals(prefixToSearch, StringComparison.OrdinalIgnoreCase));
             if (searchedPrefix != null)

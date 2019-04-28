@@ -136,7 +136,9 @@ namespace RDFSharp.Model
                     this.Items.Add(item);
                     //Update ReificationSubject (if collection has left "rdf:Nil" configuration)
                     if (this.ItemsCount == 1)
-                        this.ReificationSubject = this.InternalReificationSubject;
+					{
+						this.ReificationSubject = this.InternalReificationSubject;
+					}
                 }
             }
             return this;
@@ -171,7 +173,9 @@ namespace RDFSharp.Model
                 this.Items.RemoveAll(x => x.Equals(item));
                 //Update ReificationSubject (if collection has turned back into "rdf:Nil" configuration)
                 if (this.ItemsCount == 0)
+				{
                     this.ReificationSubject = RDFVocabulary.RDF.NIL;
+				}
             }
             return this;
         }

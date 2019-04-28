@@ -272,10 +272,13 @@ namespace RDFSharp.Model
                 while (bufferChar != -1)
                 {
                     ParseStatement(turtleData, turtleContext, result);
-                    if ((Int32)turtleContext["POSITION"] < turtleData.Length)
+                    if ((Int32)turtleContext["POSITION"] < turtleData.Length){
                         bufferChar = SkipWhitespace(turtleData, turtleContext, result);
+					}
                     else
-                        bufferChar = -1;
+					{
+						bufferChar = -1;
+					}
                 }
                 RDFNamespaceRegister.RemoveTemporaryNamespaces();
 
@@ -712,17 +715,23 @@ namespace RDFSharp.Model
 
             //If object in the context is a Uri, make it a resource for compatibility
             if (turtleContext["OBJECT"] is Uri)
+			{
                 turtleContext["OBJECT"] = new RDFResource(turtleContext["OBJECT"].ToString());
+			}
 
             //report statement
             if (turtleContext["OBJECT"] is RDFLiteral)
+			{
                 result.AddTriple(new RDFTriple((RDFResource)turtleContext["SUBJECT"],
                                                (RDFResource)turtleContext["PREDICATE"],
                                                (RDFLiteral)turtleContext["OBJECT"]));
+			}
             else
+			{
                 result.AddTriple(new RDFTriple((RDFResource)turtleContext["SUBJECT"],
                                                (RDFResource)turtleContext["PREDICATE"],
                                                (RDFResource)turtleContext["OBJECT"]));
+			}
         }
 
         /// <summary>
@@ -960,16 +969,24 @@ namespace RDFSharp.Model
             var uriString = DecodeString(turtleData, turtleContext, uriBuf.ToString());
             //Absolute: use as found
             if (Uri.IsWellFormedUriString(uriString, UriKind.Absolute))
+			{				
                 return new Uri(uriString);
+			}
             //Relative: append to graph context
             else if (Uri.IsWellFormedUriString(uriString, UriKind.Relative))
+			{
                 return new Uri(result.ToString() + uriString);
+			}
             //PureFragment: append to graph context
             else if (uriString.Equals("#"))
+			{
                 return new Uri(result.ToString().TrimEnd(new Char[] { '#' }) + uriString);
+			}
             //Error: not well-formed, so throw exception
             else
+			{
                 throw new RDFModelException("Uri is not well-formed" + GetTurtleContextCoordinates(turtleContext));
+			}
         }
 
         /// <summary>

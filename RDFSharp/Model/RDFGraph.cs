@@ -80,7 +80,9 @@ namespace RDFSharp.Model
         public RDFGraph(List<RDFTriple> triples) : this()
         {
             if (triples != null)
+			{
                 triples.ForEach(t => this.AddTriple(t));
+			}
         }
         #endregion
 
@@ -175,7 +177,9 @@ namespace RDFSharp.Model
                 var reifCont = container.ReifyContainer();
                 //Iterate on the constructed triples
                 foreach (var t in reifCont)
+				{
                     this.AddTriple(t);
+				}
             }
             return this;
         }
@@ -191,7 +195,9 @@ namespace RDFSharp.Model
                 var reifColl = collection.ReifyCollection();
                 //Iterate on the constructed triples
                 foreach (var t in reifColl)
+				{
                     this.AddTriple(t);
+				}
             }
             return this;
         }

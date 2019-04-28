@@ -603,13 +603,21 @@ namespace RDFSharp.Query
                     //Raise query event messages
                     var eventMsg = String.Format(String.Format("PropertyPath '{0}' has been evaluated on DataSource '{1}': Found '{2}' results.", (RDFPropertyPath)evaluablePGMember, graphOrStore, pPathResultsTable.Rows.Count));
                     if (query is RDFAskQuery)
+					{
                         RDFQueryEvents.RaiseASKQueryEvaluation(eventMsg);
+					}
                     else if (query is RDFConstructQuery)
+					{
                         RDFQueryEvents.RaiseCONSTRUCTQueryEvaluation(eventMsg);
+					}
                     else if (query is RDFDescribeQuery)
+					{
                         RDFQueryEvents.RaiseDESCRIBEQueryEvaluation(eventMsg);
+					}
                     else if (query is RDFSelectQuery)
+					{
                         RDFQueryEvents.RaiseSELECTQueryEvaluation(eventMsg);
+					}
                     #endregion
 
                     //Set name of result datatable

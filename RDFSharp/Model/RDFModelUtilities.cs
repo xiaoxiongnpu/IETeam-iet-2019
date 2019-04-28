@@ -72,7 +72,9 @@ namespace RDFSharp.Model
 
                 // blank detection
                 if (uriString.StartsWith("_:"))
+				{
                     uriString = "bnode:" + uriString.Substring(2);
+				}
 
                 Uri.TryCreate(uriString, UriKind.Absolute, out tempUri);
 
