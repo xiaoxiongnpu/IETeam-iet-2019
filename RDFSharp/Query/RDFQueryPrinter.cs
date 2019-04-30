@@ -895,7 +895,6 @@ namespace RDFSharp.Query
                 result.Append("  " + spaces + "OPTIONAL {\n");
                 spaces = spaces + "  ";
             }
-            //result.Append("  " + spaces + "#" + patternGroup.PatternGroupName + "\n");
             result.Append(spaces + "  {\n");
             #endregion
 
