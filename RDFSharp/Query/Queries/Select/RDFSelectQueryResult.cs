@@ -325,7 +325,7 @@ namespace RDFSharp.Query
                                                                         }
                                                                         else
                                                                         {
-                                                                            throw new Exception("one \"uri\" node contained data not corresponding to a valid Uri.");
+                                                                            throw new RDFModelException("one \"uri\" node contained data not corresponding to a valid Uri.");
                                                                         }
                                                                     }
                                                                     #endregion
@@ -350,7 +350,7 @@ namespace RDFSharp.Query
                                                                                 }
                                                                                 else
                                                                                 {
-                                                                                    throw new Exception("one \"literal\" node was found with attribute different from \"datatype\" or \"xml:lang\".");
+                                                                                    throw new RDFModelException("one \"literal\" node was found with attribute different from \"datatype\" or \"xml:lang\".");
                                                                                 }
                                                                             }
                                                                         }
