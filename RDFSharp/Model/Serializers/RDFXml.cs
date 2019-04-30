@@ -618,7 +618,7 @@ namespace RDFSharp.Model
             //Invalid RDF/XML file: root node is neither "rdf:RDF" or "RDF"
             if (rdf == null)
             {
-                throw new Exception("Given file has not a valid \"rdf:RDF\" or \"RDF\" root node");
+                throw new RDFModelException("Given file has not a valid \"rdf:RDF\" or \"RDF\" root node");
             }
 
             return rdf;

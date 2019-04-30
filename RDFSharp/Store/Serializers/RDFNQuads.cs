@@ -632,7 +632,7 @@ namespace RDFSharp.Store
                         return tokens;
                     }
 
-                    throw new Exception("found illegal N-Quad, unrecognized 'S->->->' structure");
+                    throw new RDFModelException("found illegal N-Quad, unrecognized 'S->->->' structure");
                 }
 
                 //B->->-> quadruple
@@ -874,13 +874,13 @@ namespace RDFSharp.Store
                         return tokens;
                     }
 
-                    throw new Exception("found illegal N-Quad, unrecognized 'B->->->' structure");
+                    throw new RDFModelException("found illegal N-Quad, unrecognized 'B->->->' structure");
                 }
 
             }
             else
             {
-                throw new Exception("found illegal N-Quad, must start with \"_:\" or with \"<\"");
+                throw new RDFModelException("found illegal N-Quad, must start with \"_:\" or with \"<\"");
             }
 
         }

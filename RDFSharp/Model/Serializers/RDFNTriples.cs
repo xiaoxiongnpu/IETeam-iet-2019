@@ -492,7 +492,7 @@ namespace RDFSharp.Model
                         return tokens;
                     }
 
-                    throw new Exception("found illegal N-Triple, unrecognized 'S->->' structure");
+                    throw new RDFModelException("found illegal N-Triple, unrecognized 'S->->' structure");
                 }
 
                 //B->-> triple
@@ -604,13 +604,13 @@ namespace RDFSharp.Model
                         return tokens;
                     }
 
-                    throw new Exception("found illegal N-Triple, unrecognized 'B->->' structure");
+                    throw new RDFModelException("found illegal N-Triple, unrecognized 'B->->' structure");
                 }
 
             }
             else
             {
-                throw new Exception("found illegal N-Triple, must start with \"_:\" or with \"<\"");
+                throw new RDFModelException("found illegal N-Triple, must start with \"_:\" or with \"<\"");
             }
 
         }

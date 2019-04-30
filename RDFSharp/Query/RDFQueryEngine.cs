@@ -575,13 +575,21 @@ namespace RDFSharp.Query
                     //Raise query event messages
                     var eventMsg = String.Format("Pattern '{0}' has been evaluated on DataSource '{1}': Found '{2}' results.", (RDFPattern)evaluablePGMember, graphOrStore, patternResultsTable.Rows.Count);
                     if (query is RDFAskQuery)
+                    {
                         RDFQueryEvents.RaiseASKQueryEvaluation(eventMsg);
+                    }
                     else if (query is RDFConstructQuery)
+                    {
                         RDFQueryEvents.RaiseCONSTRUCTQueryEvaluation(eventMsg);
+                    }
                     else if (query is RDFDescribeQuery)
+                    {
                         RDFQueryEvents.RaiseDESCRIBEQueryEvaluation(eventMsg);
+                    }
                     else if (query is RDFSelectQuery)
+                    {
                         RDFQueryEvents.RaiseSELECTQueryEvaluation(eventMsg);
+                    }
                     #endregion
 
                     //Set name and metadata of result datatable

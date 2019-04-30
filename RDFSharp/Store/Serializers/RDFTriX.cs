@@ -212,7 +212,7 @@ namespace RDFSharp.Store
                                 XmlNode graph = (XmlNode)graphEnum.Current;
                                 if (!graph.Name.Equals("graph", StringComparison.Ordinal))
                                 {
-                                    throw new Exception(" a \"<graph>\" element was expected, instead of unrecognized \"<" + graph.Name + ">\".");
+                                    throw new RDFModelException(" a \"<graph>\" element was expected, instead of unrecognized \"<" + graph.Name + ">\".");
                                 }
                                 Uri graphUri = RDFNamespaceRegister.DefaultNamespace.NamespaceUri;
                                 Int64 graphID = RDFNamespaceRegister.DefaultNamespace.NamespaceID;
@@ -234,7 +234,7 @@ namespace RDFSharp.Store
                                         encodedUris++;
                                         if (encodedUris > 1)
                                         {
-                                            throw new Exception(" given file encodes a graph with more than one \"<uri>\" element.");
+                                            throw new RDFModelException(" given file encodes a graph with more than one \"<uri>\" element.");
                                         }
 
                                         graphUri = RDFModelUtilities.GetUriFromString(triple.ChildNodes[0].InnerText);
@@ -351,12 +351,12 @@ namespace RDFSharp.Store
                                                 }
                                                 else
                                                 {
-                                                    throw new Exception(" found typed literal without required \"datatype\" attribute.");
+                                                    throw new RDFModelException(" found typed literal without required \"datatype\" attribute.");
                                                 }
                                             }
                                             else
                                             {
-                                                throw new Exception(" found typed literal without required \"datatype\" attribute.");
+                                                throw new RDFModelException(" found typed literal without required \"datatype\" attribute.");
                                             }
                                         }
                                         #endregion

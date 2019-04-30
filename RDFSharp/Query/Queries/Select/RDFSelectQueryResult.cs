@@ -23,6 +23,7 @@ using System.Text;
 using System.Xml;
 using System.Web;
 using RDFSharp.Model;
+using RDFSharp.Store;
 
 namespace RDFSharp.Query
 {
@@ -259,12 +260,12 @@ namespace RDFSharp.Query
                                                 }
                                                 else
                                                 {
-                                                    throw new Exception("one \"variable\" node was found without, or with empty, \"name\" attribute.");
+                                                    throw new RDFModelException("one \"variable\" node was found without, or with empty, \"name\" attribute.");
                                                 }
                                             }
                                             else
                                             {
-                                                throw new Exception("one \"variable\" node was found without attributes.");
+                                                throw new RDFModelException("one \"variable\" node was found without attributes.");
                                             }
                                         }
                                         #endregion
@@ -273,7 +274,7 @@ namespace RDFSharp.Query
                                 }
                                 else
                                 {
-                                    throw new Exception("\"head\" node was found without children.");
+                                    throw new RDFModelException("\"head\" node was found without children.");
                                 }
                             }
                             #endregion
@@ -363,24 +364,24 @@ namespace RDFSharp.Query
                                                                 }
                                                                 else
                                                                 {
-                                                                    throw new Exception("one \"binding\" node was found without children.");
+                                                                    throw new RDFQueryException("one \"binding\" node was found without children.");
                                                                 }
                                                             }
                                                             else
                                                             {
-                                                                throw new Exception("one \"binding\" node was found without, or with empty, \"name\" attribute.");
+                                                                throw new RDFQueryException("one \"binding\" node was found without, or with empty, \"name\" attribute.");
                                                             }
                                                         }
                                                         else
                                                         {
-                                                            throw new Exception("one \"binding\" node was found without attributes.");
+                                                            throw new RDFQueryException("one \"binding\" node was found without attributes.");
                                                         }
                                                     }
                                                     #endregion
 
                                                     if (!foundUri && !foundLit)
                                                     {
-                                                        throw new Exception("one \"binding\" node was found without mandatory child \"uri\" or \"literal\".");
+                                                        throw new RDFQueryException("one \"binding\" node was found without mandatory child \"uri\" or \"literal\".");
                                                     }
 
                                                 }
@@ -393,7 +394,7 @@ namespace RDFSharp.Query
                                 }
                                 else
                                 {
-                                    throw new Exception("\"head\" node was not found, or was after \"results\" node.");
+                                    throw new RDFModelException("\"head\" node was not found, or was after \"results\" node.");
                                 }
                             }
                             #endregion
@@ -402,11 +403,11 @@ namespace RDFSharp.Query
 
                         if (!foundHead)
                         {
-                            throw new Exception("mandatory \"head\" node was not found");
+                            throw new RDFStoreException("mandatory \"head\" node was not found");
                         }
                         if (!foundResults)
                         {
-                            throw new Exception("mandatory \"results\" node was not found");
+                            throw new RDFStoreException("mandatory \"results\" node was not found");
                         }
                         #endregion
 
