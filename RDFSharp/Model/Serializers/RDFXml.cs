@@ -164,6 +164,9 @@ namespace RDFSharp.Model
                                 case RDFModelEnums.RDFContainerTypes.Alt:
                                     subjNode = rdfDoc.CreateNode(XmlNodeType.Element, RDFVocabulary.RDF.PREFIX + ":Alt", RDFVocabulary.RDF.BASE_URI);
                                     break;
+								default:
+									throw new NotImplementedException();
+									break;
                             }
                             containersXML.Add(subjHash, subjNode);
                         }
@@ -219,7 +222,7 @@ namespace RDFSharp.Model
                                                         .TrimEnd(new Char[] { ':', '/' });
                                 try
                                 {
-                                    var predUriQName = new RDFTypedLiteral(predUri, RDFModelEnums.RDFDatatypes.XSD_QNAME);
+                                    new RDFTypedLiteral(predUri, RDFModelEnums.RDFDatatypes.XSD_QNAME);
                                 }
                                 catch
                                 {
@@ -615,7 +618,7 @@ namespace RDFSharp.Model
             //Invalid RDF/XML file: root node is neither "rdf:RDF" or "RDF"
             if (rdf == null)
             {
-                throw new Exception("Given file has not a valid \"rdf:RDF\" or \"RDF\" root node");
+                throw new RDFModelException("Given file has not a valid \"rdf:RDF\" or \"RDF\" root node");
             }
 
             return rdf;
@@ -637,7 +640,7 @@ namespace RDFSharp.Model
                     if (attr.LocalName.ToUpperInvariant() != "XMLNS")
                     {
 
-                        //Try to resolve the current namespace against the namespace register; 
+                        //Try to resolve the current namespace against the namespace register
                         //if not resolved, create new namespace with scope limited to actual node
                         RDFNamespace ns =
                         (RDFNamespaceRegister.GetByPrefix(attr.LocalName) ??

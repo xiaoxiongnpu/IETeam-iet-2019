@@ -175,24 +175,37 @@ namespace RDFSharp.Model
         /// <summary>
         /// Retrieves a namespace by seeking presence of its Uri.
         /// </summary>
-        public static RDFNamespace GetByUri(String uri, Boolean enablePrefixCCService = false)
+        public static RDFNamespace GetByUri(String uri, Boolean enablePrefixCCService)
         {
             if (uri != null)
             {
                 var result = Instance.Register.Find(ns => ns.NamespaceUri.ToString().Equals(uri.Trim(), StringComparison.OrdinalIgnoreCase));
                 if (result == null && enablePrefixCCService)
                 {
-                    result = LookupPrefixCC(uri.Trim().TrimEnd(new Char[] { '#' }), 2);
+                    result = LookupPrefixCC(uri.TrimEnd(new [] { '#' }), 2);
                 }
                 return result;
             }
             return null;
         }
-
+		
+		/// <summary>
+        /// Retrieves a namespace by seeking presence of its Uri.
+        /// </summary>
+		public static RDFNamespace GetByUri(String uri)
+        {
+            if (uri != null)
+            {
+                var result = LookupPrefixCC(uri.TrimEnd(new [] { '#' }), 2);
+                return result;
+            }
+            return null;
+        }
+		
         /// <summary>
         /// Retrieves a namespace by seeking presence of its prefix.
         /// </summary>
-        public static RDFNamespace GetByPrefix(String prefix, Boolean enablePrefixCCService = false)
+        public static RDFNamespace GetByPrefix(String prefix, Boolean enablePrefixCCService)
         {
             if (prefix != null)
             {
@@ -201,6 +214,19 @@ namespace RDFSharp.Model
                 {
                     result = LookupPrefixCC(prefix.Trim(), 1);
                 }
+                return result;
+            }
+            return null;
+        }
+		
+		/// <summary>
+        /// Retrieves a namespace by seeking presence of its prefix.
+        /// </summary>
+        public static RDFNamespace GetByPrefix(String prefix)
+        {
+            if (prefix != null)
+            {
+                var result = LookupPrefixCC(prefix.Trim(), 1);
                 return result;
             }
             return null;

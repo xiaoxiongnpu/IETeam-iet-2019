@@ -80,7 +80,9 @@ namespace RDFSharp.Model
         public RDFGraph(List<RDFTriple> triples) : this()
         {
             if (triples != null)
+			{
                 triples.ForEach(t => this.AddTriple(t));
+			}
         }
         #endregion
 
@@ -175,7 +177,9 @@ namespace RDFSharp.Model
                 var reifCont = container.ReifyContainer();
                 //Iterate on the constructed triples
                 foreach (var t in reifCont)
+				{
                     this.AddTriple(t);
+				}
             }
             return this;
         }
@@ -191,7 +195,9 @@ namespace RDFSharp.Model
                 var reifColl = collection.ReifyCollection();
                 //Iterate on the constructed triples
                 foreach (var t in reifColl)
+				{
                     this.AddTriple(t);
+				}
             }
             return this;
         }
@@ -517,6 +523,9 @@ namespace RDFSharp.Model
                     case RDFModelEnums.RDFFormats.Turtle:
                         RDFTurtle.Serialize(this, filepath);
                         break;
+					default:
+						throw new NotImplementedException();
+						break;
                 }
             }
             else
@@ -546,6 +555,9 @@ namespace RDFSharp.Model
                     case RDFModelEnums.RDFFormats.Turtle:
                         RDFTurtle.Serialize(this, outputStream);
                         break;
+					default:
+						throw new NotImplementedException();
+						break;
                 }
             }
             else
@@ -604,6 +616,9 @@ namespace RDFSharp.Model
                             return RDFTriX.Deserialize(filepath);
                         case RDFModelEnums.RDFFormats.Turtle:
                             return RDFTurtle.Deserialize(filepath);
+						default:
+							throw new NotImplementedException();
+							break;
                     }
                 }
                 throw new RDFModelException("Cannot read RDF graph from file because given \"filepath\" parameter (" + filepath + ") does not indicate an existing file.");
@@ -628,6 +643,9 @@ namespace RDFSharp.Model
                         return RDFTriX.Deserialize(inputStream);
                     case RDFModelEnums.RDFFormats.Turtle:
                         return RDFTurtle.Deserialize(inputStream);
+					default:
+						throw new NotImplementedException();
+						break;
                 }
             }
             throw new RDFModelException("Cannot read RDF graph from stream because given \"inputStream\" parameter is null.");

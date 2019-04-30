@@ -14,6 +14,7 @@
    limitations under the License.
 */
 
+using RDFSharp.Model;
 using System;
 using System.IO;
 using System.Text;
@@ -160,12 +161,12 @@ namespace RDFSharp.Query
                                     }
                                     else
                                     {
-                                        throw new Exception("\"boolean\" node contained data not corresponding to a valid Boolean.");
+                                        throw new RDFModelException("\"boolean\" node contained data not corresponding to a valid Boolean.");
                                     }
                                 }
                                 else
                                 {
-                                    throw new Exception("\"head\" node was not found, or was after \"boolean\" node.");
+                                    throw new RDFModelException("\"head\" node was not found, or was after \"boolean\" node.");
                                 }
                             }
                             #endregion
@@ -174,11 +175,11 @@ namespace RDFSharp.Query
 
                         if (!foundHead)
                         {
-                            throw new Exception("mandatory \"head\" node was not found");
+                            throw new RDFModelException("mandatory \"head\" node was not found");
                         }
                         if (!foundBoolean)
                         {
-                            throw new Exception("mandatory \"boolean\" node was not found");
+                            throw new RDFModelException("mandatory \"boolean\" node was not found");
                         }
                         #endregion
 

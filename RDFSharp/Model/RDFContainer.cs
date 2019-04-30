@@ -113,7 +113,9 @@ namespace RDFSharp.Model
                     case RDFModelEnums.RDFContainerTypes.Alt:
                         //Avoid duplicates in case of "rdf:Alt" container
                         if (this.Items.Find(x => x.Equals(item)) == null)
+						{
                             this.Items.Add(item);
+						}
                         break;
                     case RDFModelEnums.RDFContainerTypes.Bag:
                         this.Items.Add(item);
@@ -121,6 +123,9 @@ namespace RDFSharp.Model
                     case RDFModelEnums.RDFContainerTypes.Seq:
                         this.Items.Add(item);
                         break;
+					default:
+						throw new NotImplementedException();
+						break;
                 }
             }
             return this;
@@ -138,7 +143,9 @@ namespace RDFSharp.Model
                     case RDFModelEnums.RDFContainerTypes.Alt:
                         //Avoid duplicates in case of "rdf:Alt" container
                         if (this.Items.Find(x => x.Equals(item)) == null)
+						{
                             this.Items.Add(item);
+						}
                         break;
                     case RDFModelEnums.RDFContainerTypes.Bag:
                         this.Items.Add(item);
@@ -146,6 +153,9 @@ namespace RDFSharp.Model
                     case RDFModelEnums.RDFContainerTypes.Seq:
                         this.Items.Add(item);
                         break;
+					default:
+						throw new NotImplementedException();
+						break;
                 }
             }
             return this;
@@ -208,6 +218,9 @@ namespace RDFSharp.Model
                 case RDFModelEnums.RDFContainerTypes.Alt:
                     reifCont.AddTriple(new RDFTriple(this.ReificationSubject, RDFVocabulary.RDF.TYPE, RDFVocabulary.RDF.ALT));
                     break;
+				default:
+					throw new NotImplementedException();
+					break;
             }
 
             //  Subject -> rdf:_N -> RDFContainer.ITEM(N)
