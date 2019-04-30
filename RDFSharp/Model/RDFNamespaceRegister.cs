@@ -182,7 +182,7 @@ namespace RDFSharp.Model
                 var result = Instance.Register.Find(ns => ns.NamespaceUri.ToString().Equals(uri.Trim(), StringComparison.OrdinalIgnoreCase));
                 if (result == null && enablePrefixCCService)
                 {
-                    result = LookupPrefixCC(uri.TrimEnd(new Char[] { '#' }), 2);
+                    result = LookupPrefixCC(uri.TrimEnd(new [] { '#' }), 2);
                 }
                 return result;
             }
@@ -196,7 +196,7 @@ namespace RDFSharp.Model
         {
             if (uri != null)
             {
-                var result = LookupPrefixCC(uri.TrimEnd(new Char[] { '#' }), 2);
+                var result = LookupPrefixCC(uri.TrimEnd(new [] { '#' }), 2);
                 return result;
             }
             return null;
