@@ -42,9 +42,9 @@ namespace RDFSharp.Model
         {
             if (input != null)
             {
-                var md5Encryptor = new MD5CryptoServiceProvider();
+                var Encryptor = new SHA256Managed(); 
                 var inputBytes = Encoding.UTF8.GetBytes(input);
-                var hashBytes = md5Encryptor.ComputeHash(inputBytes);
+                var hashBytes = Encryptor.ComputeHash(inputBytes);
                 return BitConverter.ToInt64(hashBytes, 0);
             }
             throw new RDFModelException("Cannot create hash because given \"input\" string parameter is null.");
