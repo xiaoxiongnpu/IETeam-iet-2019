@@ -187,7 +187,7 @@ namespace RDFSharp.Query
                     {
                         String leftValueString = ((RDFTypedLiteral)left).Value;
                         String rightValueString = ((RDFTypedLiteral)right).Value;
-                        return leftValueString.Compare(rightValueString);
+                        return leftValueString.CompareTo(rightValueString);
                     }
                     else if (((RDFTypedLiteral)left).HasTimespanDatatype() && ((RDFTypedLiteral)right).HasTimespanDatatype())
                     {
