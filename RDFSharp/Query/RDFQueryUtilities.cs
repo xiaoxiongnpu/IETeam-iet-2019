@@ -209,8 +209,9 @@ namespace RDFSharp.Query
         /// <summary>
         /// Tries to abbreviate the string representation of the given pattern member by searching for it in the given list of namespaces
         /// </summary>
-        internal static (Boolean, String) AbbreviateRDFPatternMember(RDFPatternMember patternMember, List<RDFNamespace> prefixes)
+        internal static (Boolean, String) AbbreviateRDFPatternMember(RDFPatternMember patternMember, List<RDFNamespace> Prefixes)
         {
+            var prefixes = Prefixes;
             #region Prefix Search
             //Check if the pattern member starts with a known prefix, if so just return it
             if (prefixes == null) {

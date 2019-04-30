@@ -303,7 +303,7 @@ namespace RDFSharp.Model
                                            Dictionary<String, Object> turtleContext)
         {
             Int32 codePoint = ReadCodePoint(turtleData, turtleContext);
-            UnreadCodePoint(turtleData, turtleContext, codePoint);
+            UnreadCodePoint(turtleContext, codePoint);
             return codePoint;
         }
 
@@ -340,9 +340,8 @@ namespace RDFSharp.Model
         /// <summary>
         /// Unreads the given Unicode code point from the reader
         /// </summary>
-        private static void UnreadCodePoint(String turtleData,
-                                            Dictionary<String, Object> turtleContext,
-                                            Int32 codePoint)
+        private static void UnreadCodePoint(Dictionary<String, Object> turtleContext,
+            Int32 codePoint)
         {
             if (codePoint != -1)
             {
@@ -362,15 +361,14 @@ namespace RDFSharp.Model
         /// <summary>
         /// Unreads the given Unicode code point from the reader
         /// </summary>
-        private static void UnreadCodePoint(String turtleData,
-                                            Dictionary<String, Object> turtleContext,
-                                            String codePoints)
+        private static void UnreadCodePoint(Dictionary<String, Object> turtleContext,
+            String codePoints)
         {
             if (!String.IsNullOrEmpty(codePoints))
             {
                 foreach (var cp in codePoints)
                 {
-                    UnreadCodePoint(turtleData, turtleContext, cp);
+                    UnreadCodePoint(turtleContext, cp);
                 }
             }
         }
@@ -422,7 +420,7 @@ namespace RDFSharp.Model
                 codePoint = ReadCodePoint(turtleData, turtleContext);
                 if (codePoint == -1 || IsWhitespace(codePoint))
                 {
-                    UnreadCodePoint(turtleData, turtleContext, codePoint);
+                    UnreadCodePoint(turtleContext, codePoint);
                     break;
                 }
                 sb.Append(Char.ConvertFromUtf32(codePoint));
@@ -451,7 +449,7 @@ namespace RDFSharp.Model
             }
             else
             {
-                UnreadCodePoint(turtleData, turtleContext, directive);
+                UnreadCodePoint(turtleContext, directive);
                 ParseTriples(turtleData, turtleContext, result);
                 SkipWhitespace(turtleData, turtleContext, result);
                 VerifyCharacterOrFail(turtleData, turtleContext, ReadCodePoint(turtleData, turtleContext), ".");
@@ -470,7 +468,7 @@ namespace RDFSharp.Model
             {
                 if (directive.Length > 7)
                 {
-                    UnreadCodePoint(turtleData, turtleContext, directive.Substring(7));
+                    UnreadCodePoint(turtleContext, directive.Substring(7));
                 }
                 ParsePrefixID(turtleData, turtleContext, result);
             }
@@ -478,7 +476,7 @@ namespace RDFSharp.Model
             {
                 if (directive.Length > 5)
                 {
-                    UnreadCodePoint(turtleData, turtleContext, directive.Substring(5));
+                    UnreadCodePoint(turtleContext, directive.Substring(5));
                 }
                 ParseBase(turtleData, turtleContext, result);
             }
@@ -486,7 +484,7 @@ namespace RDFSharp.Model
             {
                 if (directive.Length > 6)
                 {
-                    UnreadCodePoint(turtleData, turtleContext, directive.Substring(6));
+                    UnreadCodePoint(turtleContext, directive.Substring(6));
                 }
                 ParsePrefixID(turtleData, turtleContext, result);
             }
@@ -494,7 +492,7 @@ namespace RDFSharp.Model
             {
                 if (directive.Length > 4)
                 {
-                    UnreadCodePoint(turtleData, turtleContext, directive.Substring(4));
+                    UnreadCodePoint(turtleContext, directive.Substring(4));
                 }
                 ParseBase(turtleData, turtleContext, result);
             }
@@ -537,7 +535,7 @@ namespace RDFSharp.Model
                     //initial '[' character in order for the method to work
                     while (bufChar != '[')
                     {
-                        UnreadCodePoint(turtleData, turtleContext, bufChar);
+                        UnreadCodePoint(turtleContext, bufChar);
                         bufChar = PeekCodePoint(turtleData, turtleContext);
                     }
                     turtleContext["SUBJECT"] = ParseImplicitBlank(turtleData, turtleContext, result);
@@ -619,9 +617,9 @@ namespace RDFSharp.Model
                 }
 
                 // Short-cut is not used, unread all characters
-                UnreadCodePoint(turtleData, turtleContext, bufChar2);
+                UnreadCodePoint(turtleContext, bufChar2);
             }
-            UnreadCodePoint(turtleData, turtleContext, bufChar1);
+            UnreadCodePoint(turtleContext, bufChar1);
 
             // Predicate is a normal resource
             Object predicate = ParseValue(turtleData, turtleContext, result);
@@ -813,7 +811,7 @@ namespace RDFSharp.Model
             Int32 bufChar = ReadCodePoint(turtleData, turtleContext);
             if (bufChar != ']')
             {
-                UnreadCodePoint(turtleData, turtleContext, bufChar);
+                UnreadCodePoint(turtleContext, bufChar);
 
                 // Remember current subject and predicate
                 RDFResource oldSubject = (RDFResource)turtleContext["SUBJECT"];
@@ -854,7 +852,7 @@ namespace RDFSharp.Model
                 Int32 bufChar = ReadCodePoint(turtleData, turtleContext);
                 if (bufChar == ':')
                 {
-                    UnreadCodePoint(turtleData, turtleContext, bufChar);
+                    UnreadCodePoint(turtleContext, bufChar);
                     break;
                 }
                 else if (IsWhitespace(bufChar))
@@ -1064,7 +1062,7 @@ namespace RDFSharp.Model
             // If we would never go into the loop we must unread now
             if (!IsBLANK_NODE_LABEL_Char(bufChar))
             {
-                UnreadCodePoint(turtleData, turtleContext, bufChar);
+                UnreadCodePoint(turtleContext, bufChar);
             }
 
             while (IsBLANK_NODE_LABEL_Char(bufChar))
@@ -1073,18 +1071,18 @@ namespace RDFSharp.Model
                 bufChar = ReadCodePoint(turtleData, turtleContext);
                 if (previous == '.' && (bufChar == -1 || IsWhitespace(bufChar) || bufChar == '<' || bufChar == '_'))
                 {
-                    UnreadCodePoint(turtleData, turtleContext, bufChar);
-                    UnreadCodePoint(turtleData, turtleContext, previous);
+                    UnreadCodePoint(turtleContext, bufChar);
+                    UnreadCodePoint(turtleContext, previous);
                     break;
                 }
                 name.Append((char)previous);
                 if (!IsBLANK_NODE_LABEL_Char(bufChar))
                 {
-                    UnreadCodePoint(turtleData, turtleContext, bufChar);
+                    UnreadCodePoint(turtleContext, bufChar);
                 }
             }
 
-            return new RDFResource("bnode:" + name.ToString());
+            return new RDFResource("bnode:" + name);
         }
 
         /// <summary>
@@ -1184,7 +1182,7 @@ namespace RDFSharp.Model
             }
 
             // Unread last character, it isn't part of the number
-            UnreadCodePoint(turtleData, turtleContext, bufChar);
+            UnreadCodePoint(turtleContext, bufChar);
 
             // Return result as a typed literal
             return new RDFTypedLiteral(value.ToString(), dt);
@@ -1233,7 +1231,7 @@ namespace RDFSharp.Model
                 while (previousChar == '.' && prefix.Length > 0)
                 {
                     // '.' is a legal prefix name char, but can not appear at the end
-                    UnreadCodePoint(turtleData, turtleContext, bufChar);
+                    UnreadCodePoint(turtleContext, bufChar);
                     bufChar = previousChar;
                     prefix.Remove(prefix.Length - 1, 1);
                     previousChar = prefix.ToString().Last();
@@ -1246,7 +1244,7 @@ namespace RDFSharp.Model
                     if (value.Equals("true", StringComparison.InvariantCultureIgnoreCase)
                             || value.Equals("false", StringComparison.InvariantCultureIgnoreCase))
                     {
-                        UnreadCodePoint(turtleData, turtleContext, bufChar);
+                        UnreadCodePoint(turtleContext, bufChar);
                         return new RDFTypedLiteral(value, RDFModelEnums.RDFDatatypes.XSD_BOOLEAN);
                     }
                 }
@@ -1295,19 +1293,19 @@ namespace RDFSharp.Model
                 }
 
                 // Unread last character
-                UnreadCodePoint(turtleData, turtleContext, bufChar);
+                UnreadCodePoint(turtleContext, bufChar);
 
                 if (previousChar == '.')
                 {
                     // '.' is a legal name char, but can not appear at the end, so is not actually part of the name
-                    UnreadCodePoint(turtleData, turtleContext, previousChar);
+                    UnreadCodePoint(turtleContext, previousChar);
                     localName.Remove(localName.Length - 1, 1);
                 }
             }
             else
             {
                 // Unread last character
-                UnreadCodePoint(turtleData, turtleContext, bufChar);
+                UnreadCodePoint(turtleContext, bufChar);
             }
 
             String localNameString = localName.ToString();
@@ -1378,7 +1376,7 @@ namespace RDFSharp.Model
                     bufChar = ReadCodePoint(turtleData, turtleContext);
                 }
 
-                UnreadCodePoint(turtleData, turtleContext, bufChar);
+                UnreadCodePoint(turtleContext, bufChar);
 
                 return new RDFPlainLiteral(label, lang.ToString());
             }
@@ -1433,8 +1431,8 @@ namespace RDFSharp.Model
             else
             {
                 // Normal string
-                UnreadCodePoint(turtleData, turtleContext, c3);
-                UnreadCodePoint(turtleData, turtleContext, c2);
+                UnreadCodePoint(turtleContext, c3);
+                UnreadCodePoint(turtleContext, c2);
 
                 result = ParseString(turtleData, turtleContext, c1);
             }
@@ -1678,7 +1676,7 @@ namespace RDFSharp.Model
                 }
                 bufChar = ReadCodePoint(turtleData, turtleContext);
             }
-            UnreadCodePoint(turtleData, turtleContext, bufChar);
+            UnreadCodePoint(turtleContext, bufChar);
             return bufChar;
         }
 
@@ -1701,7 +1699,7 @@ namespace RDFSharp.Model
                 bufChar = ReadCodePoint(turtleData, turtleContext);
                 if (bufChar != 0xA)
                 {
-                    UnreadCodePoint(turtleData, turtleContext, bufChar);
+                    UnreadCodePoint(turtleContext, bufChar);
                 }
             }
         }
