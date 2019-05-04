@@ -175,7 +175,7 @@ namespace RDFSharp.Model
         /// <summary>
         /// Retrieves a namespace by seeking presence of its Uri.
         /// </summary>
-        public static RDFNamespace GetByUri(String uri, Boolean enablePrefixCCService)
+        public static RDFNamespace GetByUri(String uri, Boolean enablePrefixCCService=false)
         {
             if (uri != null)
             {
@@ -196,7 +196,7 @@ namespace RDFSharp.Model
         {
             if (uri != null)
             {
-                var result = LookupPrefixCC(uri.TrimEnd(new [] { '#' }), 2);
+                var result = Instance.Register.Find(ns => ns.NamespaceUri.ToString().Equals(uri.Trim(), StringComparison.OrdinalIgnoreCase));
                 return result;
             }
             return null;
@@ -226,7 +226,7 @@ namespace RDFSharp.Model
         {
             if (prefix != null)
             {
-                var result = LookupPrefixCC(prefix.Trim(), 1);
+                var result = Instance.Register.Find(ns => ns.NamespacePrefix.Equals(prefix.Trim(), StringComparison.OrdinalIgnoreCase));
                 return result;
             }
             return null;
