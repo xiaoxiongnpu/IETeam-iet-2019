@@ -15,7 +15,7 @@ namespace DemoApp.ModelTests
         public void CreatingPlainLiteralWithValidValueTest()
         {
             //Egyszerű literális "normális" alapértékkel
-            var plainLiteral = new RDFPlainLiteral("VIK");
+            var plainLiteral = new RDFPlainLiteral("VIK");            
             Assert.Equal("VIK", plainLiteral.Value);
         }
         [Fact]

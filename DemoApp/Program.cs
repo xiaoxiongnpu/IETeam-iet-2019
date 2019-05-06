@@ -90,7 +90,6 @@ namespace DemoApp
                 Console.WriteLine($"Prefix: {ns.NamespacePrefix}\n");
                 Console.WriteLine($"Namespace: {ns.NamespaceUri}\n");
             }
-
             Console.ReadKey();
         }
     }
