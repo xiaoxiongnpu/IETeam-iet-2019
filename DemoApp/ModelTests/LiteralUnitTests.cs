@@ -8,7 +8,7 @@ using Xunit;
 
 namespace DemoApp.ModelTests
 {
-    public class LiteralUnitTests
+    public static class LiteralUnitTests
     {
 
         [Fact]
@@ -27,7 +27,7 @@ namespace DemoApp.ModelTests
         }
 
         [Fact]
-        public void CreatingPlainLiteralWithoutLanguageTest()
+        public static void CreatingPlainLiteralWithoutLanguageTest()
         {
             //Egyszerű literális nyelv érték hozzáadás nélkül
             var plainLiteral = new RDFPlainLiteral("C'est la vie!");

@@ -12,7 +12,7 @@ namespace DemoApp.ModelTests
     *  vagy egy URI-t példányosítunk ez true értékkel tér vissza,
     *  ha a megadott paraméter egy resource-nak felel meg
     */
-    public class ResourceUnitTests
+    public static class ResourceUnitTests
     {
         [Fact]
         public static void CreatingResourceWithValidURITest()
