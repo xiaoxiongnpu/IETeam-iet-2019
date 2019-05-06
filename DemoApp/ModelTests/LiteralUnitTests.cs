@@ -12,14 +12,14 @@ namespace DemoApp.ModelTests
     {
 
         [Fact]
-        public void CreatingPlainLiteralWithValidValueTest()
+        public static void CreatingPlainLiteralWithValidValueTest()
         {
             //Egyszerű literális "normális" alapértékkel
             var plainLiteral = new RDFPlainLiteral("VIK");            
             Assert.Equal("VIK", plainLiteral.Value);
         }
         [Fact]
-        public void CreatingPlainLiteralWithoutValueTest()
+        public static void CreatingPlainLiteralWithoutValueTest()
         {
             //Egyszerű literális null alapértékkel
             var plainLiteral = new RDFPlainLiteral(null);
@@ -35,7 +35,7 @@ namespace DemoApp.ModelTests
         }
 
         [Fact]
-        public void CreatingPlainLiteralWithLanguageTest()
+        public static void CreatingPlainLiteralWithLanguageTest()
         {
             //Egyszerű literális rendes nyelvi értékkel
             var plainLiteral = new RDFPlainLiteral("C'est la vie!", "FR");
@@ -43,7 +43,7 @@ namespace DemoApp.ModelTests
         }
 
         [Fact]
-        public void CreatingPlainLiteralWithWrongLanguageTest()
+        public static void CreatingPlainLiteralWithWrongLanguageTest()
         {
             //Egyszerű literális rossz nyelvi értékkel
             var plainLiteral = new RDFPlainLiteral("C'est la vie!", "WhatThePepperoni");

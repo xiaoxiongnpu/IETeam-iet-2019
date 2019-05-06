@@ -15,7 +15,7 @@ namespace DemoApp.ModelTests
     public class ResourceUnitTests
     {
         [Fact]
-        public void CreatingResourceWithValidURITest()
+        public static void CreatingResourceWithValidURITest()
         {
             //Erőforrás string-ként megadott URI-ból
             var validURI = new RDFResource("https://www.youtube.com/");
@@ -23,7 +23,7 @@ namespace DemoApp.ModelTests
         }
 
         [Fact]
-        public void CreatingBlankResourceTest()
+        public static void CreatingBlankResourceTest()
         {
             //Tudunk üres erőforrás objektumot is létrehozni
             var validURI = new RDFResource();
@@ -31,11 +31,11 @@ namespace DemoApp.ModelTests
         }
 
         [Fact]
-        public void CreatingResourceWithInValidURITest()
+        public static void CreatingResourceWithInValidURITest()
         {
             try
             {
-                var invalidURI = new RDFResource("invalid input which is not a URI");
+                new RDFResource("invalid input which is not a URI");
             }
             catch (RDFModelException me)
             {
