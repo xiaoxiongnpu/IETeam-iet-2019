@@ -90,6 +90,7 @@ namespace DemoApp
                 Console.WriteLine($"Prefix: {ns.NamespacePrefix}\n");
                 Console.WriteLine($"Namespace: {ns.NamespaceUri}\n");
             }
+            ModelTests.GraphUnitTests.CreatingSimpleGraphTest();
             Console.ReadKey();
         }
     }
