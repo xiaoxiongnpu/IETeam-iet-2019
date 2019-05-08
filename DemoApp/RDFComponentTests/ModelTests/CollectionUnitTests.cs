@@ -12,7 +12,7 @@ namespace DemoApp.RDFComponentTests.ModelTests
     {
         #region AddTests
         [Fact]
-        public void AddNullTest()
+        public static void AddNullTest()
         {
             var collection = new RDFCollection(RDFModelEnums.RDFItemTypes.Resource);
             RDFResource resource = null;
@@ -21,7 +21,7 @@ namespace DemoApp.RDFComponentTests.ModelTests
         }
 
         [Fact]
-        public void AddResourceItemTest()
+        public static void AddResourceItemTest()
         {
             var collection = new RDFCollection(RDFModelEnums.RDFItemTypes.Resource);
             var resource = new RDFResource("https://www.index.hu");
@@ -30,7 +30,7 @@ namespace DemoApp.RDFComponentTests.ModelTests
         }
 
         [Fact]
-        public void AddLiteralItemTest()
+        public static void AddLiteralItemTest()
         {
             var collection = new RDFCollection(RDFModelEnums.RDFItemTypes.Literal);
             var literal = new RDFLiteral("literalString");

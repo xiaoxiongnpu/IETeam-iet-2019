@@ -76,7 +76,7 @@ namespace DemoApp.RDFComponentTests.ModelTests
 
         #region ReifyTests
         [Fact]
-        public void ReifyEmptyContainerTest()
+        public static void ReifyEmptyContainerTest()
         {
             var container = new RDFContainer(RDFModelEnums.RDFContainerTypes.Set, RDFModelEnums.RDFItemTypes.Resource);
             var emptyGraph = container.ReifyContainer();
