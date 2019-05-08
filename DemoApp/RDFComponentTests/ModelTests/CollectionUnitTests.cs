@@ -33,7 +33,7 @@ namespace DemoApp.RDFComponentTests.ModelTests
         public void AddLiteralItemTest()
         {
             var collection = new RDFCollection(RDFModelEnums.RDFItemTypes.Literal);
-            var literal = new RDFLiteral("https://www.index.hu");
+            var literal = new RDFLiteral("literalString");
             collection.AddItem(literal);
             Assert.Equal(1, collection.ItemsCount);
         }
@@ -75,7 +75,7 @@ namespace DemoApp.RDFComponentTests.ModelTests
         public static void RemoveLiteralItemTest()
         {
             var collection = new RDFCollection(RDFModelEnums.RDFItemTypes.Literal);
-            var literal = new RDFResource("https://www.index.hu");
+            var literal = new RDFResource("literalString");
             collection.AddItem(literal);
 
             collection.RemoveItem(literal);
