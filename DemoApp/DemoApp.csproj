@@ -58,7 +58,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="RDFComponentTests\GraphBuilder.cs" />
-    <Compile Include="RDFComponentTests\ModelTests\CollectionUnitTests.cs" />
     <Compile Include="RDFComponentTests\ModelTests\GraphUnitTests.cs" />
     <Compile Include="RDFComponentTests\ModelTests\LiteralUnitTests.cs" />
     <Compile Include="RDFComponentTests\ModelTests\ResourceUnitTests.cs" />
