@@ -30,15 +30,6 @@ namespace DemoApp.RDFComponentTests.ModelTests
         }
 
         [Fact]
-        public static void AddLiteralItemTest()
-        {
-            var collection = new RDFCollection(RDFModelEnums.RDFItemTypes.Literal);
-            var literal = new RDFLiteral("literalString");
-            collection.AddItem(literal);
-            Assert.Equal(1, collection.ItemsCount);
-        }
-
-        [Fact]
         public static void EmptyCollectionTest()
         {
             var collection = new RDFCollection(RDFModelEnums.RDFItemTypes.Resource);
@@ -67,18 +58,6 @@ namespace DemoApp.RDFComponentTests.ModelTests
             collection.AddItem(resource);
 
             collection.RemoveItem(resource);
-            Assert.Equal(RDFVocabulary.RDF.NIL, collection.ReificationSubject);
-            Assert.Equal(0, collection.ItemsCount);
-        }
-
-        [Fact]
-        public static void RemoveLiteralItemTest()
-        {
-            var collection = new RDFCollection(RDFModelEnums.RDFItemTypes.Literal);
-            var literal = new RDFResource("literalString");
-            collection.AddItem(literal);
-
-            collection.RemoveItem(literal);
             Assert.Equal(RDFVocabulary.RDF.NIL, collection.ReificationSubject);
             Assert.Equal(0, collection.ItemsCount);
         }
