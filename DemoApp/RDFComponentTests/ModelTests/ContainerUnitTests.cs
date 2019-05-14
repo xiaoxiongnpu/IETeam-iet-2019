@@ -20,14 +20,6 @@ namespace DemoApp.RDFComponentTests.ModelTests
         }
 
         [Fact]
-        public static void AddLiteralItemTest()
-        {
-            var container = new RDFContainer(RDFModelEnums.RDFContainerTypes.Bag, RDFModelEnums.RDFItemTypes.Resource);
-            container.AddItem(new RDFLiteral("literalString"));
-            Assert.Equal(1, container.ItemsCount);
-        }
-
-        [Fact]
         public static void DuplicateItemTest()
         {
             var container = new RDFContainer(RDFModelEnums.RDFContainerTypes.Alt, RDFModelEnums.RDFItemTypes.Resource);
@@ -51,18 +43,6 @@ namespace DemoApp.RDFComponentTests.ModelTests
         }
 
         [Fact]
-        public static void RemoveLiteralItemTest()
-        {
-            var container = new RDFContainer(RDFModelEnums.RDFContainerTypes.Alt, RDFModelEnums.RDFItemTypes.Literal);
-            var literal = new RDFLiteral("literalString");
-            container.AddItem(literal);
-
-            container.RemoveItem(literal);
-
-            Assert.Equal(0, container.ItemsCount);
-        }
-
-        [Fact]
         public static void RemoveFromEmptyContainerTest()
         {
             var container = new RDFContainer(RDFModelEnums.RDFContainerTypes.Alt, RDFModelEnums.RDFItemTypes.Resource);
@@ -76,9 +56,9 @@ namespace DemoApp.RDFComponentTests.ModelTests
 
         #region ReifyTests
         [Fact]
-        public void ReifyEmptyContainerTest()
+        public static void ReifyEmptyContainerTest()
         {
-            var container = new RDFContainer(RDFModelEnums.RDFContainerTypes.Set, RDFModelEnums.RDFItemTypes.Resource);
+            var container = new RDFContainer(RDFModelEnums.RDFContainerTypes.Seq, RDFModelEnums.RDFItemTypes.Resource);
             var emptyGraph = container.ReifyContainer();
             Assert.Equal(1, emptyGraph.TriplesCount);
         }

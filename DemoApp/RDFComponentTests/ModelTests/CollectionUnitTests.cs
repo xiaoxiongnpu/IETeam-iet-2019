@@ -12,7 +12,7 @@ namespace DemoApp.RDFComponentTests.ModelTests
     {
         #region AddTests
         [Fact]
-        public void AddNullTest()
+        public static void AddNullTest()
         {
             var collection = new RDFCollection(RDFModelEnums.RDFItemTypes.Resource);
             RDFResource resource = null;
@@ -21,20 +21,11 @@ namespace DemoApp.RDFComponentTests.ModelTests
         }
 
         [Fact]
-        public void AddResourceItemTest()
+        public static void AddResourceItemTest()
         {
             var collection = new RDFCollection(RDFModelEnums.RDFItemTypes.Resource);
             var resource = new RDFResource("https://www.index.hu");
             collection.AddItem(resource);
-            Assert.Equal(1, collection.ItemsCount);
-        }
-
-        [Fact]
-        public void AddLiteralItemTest()
-        {
-            var collection = new RDFCollection(RDFModelEnums.RDFItemTypes.Literal);
-            var literal = new RDFLiteral("literalString");
-            collection.AddItem(literal);
             Assert.Equal(1, collection.ItemsCount);
         }
 
@@ -67,18 +58,6 @@ namespace DemoApp.RDFComponentTests.ModelTests
             collection.AddItem(resource);
 
             collection.RemoveItem(resource);
-            Assert.Equal(RDFVocabulary.RDF.NIL, collection.ReificationSubject);
-            Assert.Equal(0, collection.ItemsCount);
-        }
-
-        [Fact]
-        public static void RemoveLiteralItemTest()
-        {
-            var collection = new RDFCollection(RDFModelEnums.RDFItemTypes.Literal);
-            var literal = new RDFResource("literalString");
-            collection.AddItem(literal);
-
-            collection.RemoveItem(literal);
             Assert.Equal(RDFVocabulary.RDF.NIL, collection.ReificationSubject);
             Assert.Equal(0, collection.ItemsCount);
         }
