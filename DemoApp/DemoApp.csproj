@@ -70,7 +70,7 @@
     <Compile Include="RDFComponentTests\StoreTests\MemoryStoreUnitTests.cs" />
     <Compile Include="RDFComponentTests\StoreTests\FederationUnitTests.cs" />
     <Compile Include="RDFComponentTests\StoreTests\QuadrupleUnitTests.cs" />
-    <Compile Include="RDFComponentTests\StoreTests\UnitTest1.cs" />
+    <Compile Include="RDFComponentTests\StoreTests\ContextUnitTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

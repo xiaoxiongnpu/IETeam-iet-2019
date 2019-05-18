@@ -21,5 +21,10 @@ namespace DemoApp.RDFComponentTests.StoreTests
 
             Assert.Equal("http://www.wikipedia.com/", cont.ToString()); 
         }
+        [Fact]
+        public static void CreatingInvalidContextTest()
+        {
+            Assert.Throws<RDFStoreException>( () => new RDFContext("not a uri"));
+        }
     }
 }

@@ -9,6 +9,18 @@ namespace DemoApp.RDFComponentTests.StoreTests
     public static class QuadrupleUnitTests
     {
         [Fact]
+        public static void CreatingSimpleQuadrupleTest()
+        {
+            var cont = new RDFContext("http://www.wikipedia.com/");
+            var subj = new RDFResource("http://www.waltdisney.com/mickey_mouse");
+            var pred = new RDFResource("http://xmlns.com/foaf/0.1/age");
+            var lit = new RDFTypedLiteral("85", RDFModelEnums.RDFDatatypes.XSD_INT);
+            var quad = new RDFQuadruple(cont, subj, pred, lit);
+
+            Assert.NotNull(quad);
+            
+        }
+        [Fact]
         public static void GetQuadrupleContextTest()
         {
             RDFQuadruple quad = new RDFQuadruple(
