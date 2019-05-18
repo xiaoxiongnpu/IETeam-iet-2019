@@ -15,15 +15,13 @@ namespace DemoApp.RDFComponentTests.QueryTests
     //Contains 27 tests
     public class QueryTests
     {
-        private RDFGraph graph;
-        private RDFResource donaldduck;
-        private RDFResource goofygoof;
+        private readonly RDFGraph graph;
+        private readonly RDFResource donaldduck;
 
         public QueryTests()
         {
             graph = GraphBuilder.WaltDisneyGraphBuild();
             donaldduck = new RDFResource("http://www.waltdisney.com/donald_duck");
-            goofygoof = new RDFResource("http://www.waltdisney.com/goofy_goof");
         }
 
         [Fact]
