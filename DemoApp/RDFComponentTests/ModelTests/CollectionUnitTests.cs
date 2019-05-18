@@ -17,7 +17,7 @@ namespace DemoApp.RDFComponentTests.ModelTests
             var collection = new RDFCollection(RDFModelEnums.RDFItemTypes.Resource);
             RDFResource resource = null;
             collection.AddItem(resource);
-            Assert.Equal(1, collection.ItemsCount);
+            Assert.Equal(0, collection.ItemsCount);
         }
 
         [Fact]
