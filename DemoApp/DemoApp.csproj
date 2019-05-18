@@ -59,11 +59,14 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="RDFComponentTests\GraphBuilder.cs" />
+    <Compile Include="RDFComponentTests\ModelTests\CollectionUnitTests.cs" />
+    <Compile Include="RDFComponentTests\ModelTests\ContainerUnitTests.cs" />
     <Compile Include="RDFComponentTests\ModelTests\GraphUnitTests.cs" />
     <Compile Include="RDFComponentTests\ModelTests\LiteralUnitTests.cs" />
     <Compile Include="RDFComponentTests\ModelTests\ResourceUnitTests.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RDFComponentTests\StoreTests\MemoryStoreUnitTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
@@ -80,7 +83,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="RDFComponentTests\QueryTests\" />
-    <Folder Include="RDFComponentTests\StoreTests\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
