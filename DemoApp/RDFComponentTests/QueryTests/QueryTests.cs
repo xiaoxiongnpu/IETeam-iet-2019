@@ -12,6 +12,7 @@ using Xunit.Abstractions;
 
 namespace DemoApp.RDFComponentTests.QueryTests
 {
+    //Contains 27 tests
     public class QueryTests
     {
         private RDFGraph graph;
