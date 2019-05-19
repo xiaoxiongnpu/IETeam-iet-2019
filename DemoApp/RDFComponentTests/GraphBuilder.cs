@@ -17,22 +17,28 @@ namespace DemoApp.RDFComponentTests
             //create typed literal
             // "85"^^xsd:integer
             RDFTypedLiteral mickeymouse_age = new RDFTypedLiteral("85", RDFModelEnums.RDFDatatypes.XSD_INTEGER);
+            RDFTypedLiteral donaldduck_age = new RDFTypedLiteral("85", RDFModelEnums.RDFDatatypes.XSD_INTEGER);
 
 
             //create triples
             // "Mickey Mouse is 85 years old"
             RDFTriple mickeymouse_is85yr = new RDFTriple(new RDFResource("http://www.waltdisney.com/mickey_mouse"),
-                                                         new RDFResource("http://xmlns.com/foaf/0.1/age"),
+                                                         RDFVocabulary.FOAF.AGE,
                                                          mickeymouse_age);
 
             // "Donald Duck has English-US name "Donald Duck""
             RDFTriple donaldduck_name_enus_triple = new RDFTriple(donaldduck,
-                                                                  new RDFResource("http://xmlns.com/foaf/0.1/name"),
+                                                                  RDFVocabulary.FOAF.NAME,
                                                                   donaldduck_name);
 
+            // "Donald Duck is 85 years old"
+            RDFTriple donaldduck_is85yr = new RDFTriple(donaldduck,
+                                                         RDFVocabulary.FOAF.AGE,
+                                                         donaldduck_age);
 
 
-            List<RDFTriple> triples = new List<RDFTriple> { mickeymouse_is85yr, donaldduck_name_enus_triple };
+
+            List<RDFTriple> triples = new List<RDFTriple> { mickeymouse_is85yr, donaldduck_name_enus_triple, donaldduck_is85yr };
 
             RDFGraph waltdisney = new RDFGraph(triples);
             waltdisney.SetContext(new Uri("http://waltdisney.com/"));
