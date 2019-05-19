@@ -67,7 +67,11 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RDFComponentTests\QueryTests\QueryTests.cs" />
+    <Compile Include="RDFComponentTests\StoreBuilder.cs" />
+    <Compile Include="RDFComponentTests\StoreTests\ContextUnitTests.cs" />
+    <Compile Include="RDFComponentTests\StoreTests\FederationUnitTests.cs" />
     <Compile Include="RDFComponentTests\StoreTests\MemoryStoreUnitTests.cs" />
+    <Compile Include="RDFComponentTests\StoreTests\QuadrupleUnitTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
