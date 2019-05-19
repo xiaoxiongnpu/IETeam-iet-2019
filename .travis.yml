@@ -1,2 +1,8 @@
 language: csharp
 solution: RDFSharp.sln
+install:
+  - nuget restore RDFSharp.sln
+  - nuget install xunit.runner.console -Version 2.1.0 -OutputDirectory testrunner
+script:
+  - msbuild /p:Configuration=Release RDFSharp.sln
+  - mono ./testrunner/xunit.runner.console.2.1.0/tools/xunit.console.exe ./RDFTest/bin/Release/RDFTest.dll
