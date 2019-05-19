@@ -15,11 +15,28 @@ namespace DemoApp.RDFComponentTests.StoreTests
         }
 
         [Fact]
-        public static void RemoveStoreFromFederationTest()
+        public static void ClearStoresFromFederationTest()
         {
             RDFFederation fed = StoreBuilder.CreateFederation();
             fed.ClearStores();
             Assert.Empty(fed);
+        }
+        [Fact]
+        public static void RemoveStoreFromFederationTest()
+        {
+            RDFFederation fed = StoreBuilder.CreateFederation();
+            RDFMemoryStore mem = StoreBuilder.CreateStore();
+
+            fed.RemoveStore(mem);
+            Assert.DoesNotContain(mem, fed);
+        }
+        [Fact]
+        public static void FederationEqualityTest()
+        {
+            RDFFederation fed1 = StoreBuilder.CreateFederation();
+            RDFFederation fed2 = StoreBuilder.CreateFederation();
+            //The storeIDs are still not equals, so these to federtaions never will be the same
+            Assert.False(fed1.Equals(fed2));
         }
 
         [Fact]
