@@ -12,33 +12,121 @@ namespace DemoApp.RDFComponentTests.StoreTests
     public static class MemoryStoreUnitTests
     {
 
-        //Creating store based on: http://dadev.cloudapp.net/Datos%20Abiertos/PDF/ReferenceGuide.pdf
-        public static RDFMemoryStore rdfStore = new RDFMemoryStore();
-        public static void CreateStore()
+        [Fact]
+        public static void CreateSimpleStoreTest()
         {
-            // "From Wikipedia.com: Mickey Mouse is 85 years old" 
-            rdfStore.AddQuadruple(new RDFQuadruple(
-                new RDFContext("http://www.wikipedia.com/"),
-                new RDFResource("http://www.waltdisney.com/mickey_mouse"),
-                new RDFResource("http://xmlns.com/foaf/0.1/age"),
-                new RDFTypedLiteral("85", RDFModelEnums.RDFDatatypes.XSD_INT))
-            );
+            RDFMemoryStore rdfms = StoreBuilder.CreateStore();
+            Assert.Equal(3, rdfms.QuadruplesCount);
+        }
 
-            // "From WaltDisney.com: Mickey Mouse is 85 years old" 
-            rdfStore.AddQuadruple(new RDFQuadruple(
+        [Fact]
+        public static void ContainsQuadrupleTest()
+        {
+            RDFMemoryStore rdfms = StoreBuilder.CreateStore();
+            RDFQuadruple contain = (new RDFQuadruple(
                 new RDFContext("http://www.waltdisney.com/"),
                 new RDFResource("http://www.waltdisney.com/mickey_mouse"),
                 new RDFResource("http://xmlns.com/foaf/0.1/age"),
                 new RDFTypedLiteral("85", RDFModelEnums.RDFDatatypes.XSD_INT))
             );
-
-            // "From Wikipedia.com: Donald Duck has English-US name "Donald Duck"" 
-            rdfStore.AddQuadruple(new RDFQuadruple(
-                new RDFContext("http://www.wikipedia.com/"),
-                new RDFResource("http://www.waltdisney.com/donald_duck"),
-                new RDFResource("http://xmlns.com/foaf/0.1/name"),
-                new RDFTypedLiteral("Donald Duck", RDFModelEnums.RDFDatatypes.XSD_STRING))
+            Assert.True(rdfms.ContainsQuadruple(contain));
+        }
+        [Fact]
+        public static void RemovingQuadrupleTest()
+        {
+            RDFMemoryStore rdfms = StoreBuilder.CreateStore();
+            RDFQuadruple contain = (new RDFQuadruple(
+                new RDFContext("http://www.waltdisney.com/"),
+                new RDFResource("http://www.waltdisney.com/mickey_mouse"),
+                new RDFResource("http://xmlns.com/foaf/0.1/age"),
+                new RDFTypedLiteral("85", RDFModelEnums.RDFDatatypes.XSD_INT))
             );
+            rdfms.RemoveQuadruple(contain);
+            Assert.False(rdfms.ContainsQuadruple(contain));
+        }
+
+        [Fact]
+        public static void StoreDifferenceTest()
+        {
+            var mem1 = StoreBuilder.CreateStore();
+            var mem2 = StoreBuilder.CreateStore();
+
+            var result = mem1.DifferenceWith(mem2);
+            Assert.Empty(result);
+        }
+        [Fact]
+        public static void StoreUnitTest()
+        {
+            var mem1 = StoreBuilder.CreateStore();
+            var mem2 = StoreBuilder.CreateStore();
+
+            var result = mem1.UnionWith(mem2);
+
+            Assert.True(result.Equals(mem1));
+        }
+
+        [Fact]
+        public static void ClearingStoreTest()
+        {
+            var store = StoreBuilder.CreateStore();
+
+            store.ClearQuadruples();
+
+            Assert.Empty(store);
+        }
+        [Fact]
+        public static void MergingGraphIntoStoreTest()
+        {
+            var mem = new RDFMemoryStore();
+            var graph = GraphBuilder.WaltDisneyGraphBuild();
+
+            mem.MergeGraph(graph);
+
+            /*
+             * A memorystore és a gráf első elemének vizsgálatával
+             * megállapítjuk, hogy sikeres volt-e a merge, mivel üres memorystore-ba mergeltünk
+            */
+            Assert.True(mem.First().Predicate.Equals(graph.First().Predicate));
+        }
+        [Fact]
+        public static void RemovingQuadrupleByContextTest()
+        {
+            RDFMemoryStore rdfms = StoreBuilder.CreateStore();
+            RDFQuadruple contain = (new RDFQuadruple(
+                new RDFContext("http://www.waltdisney.com/"),
+                new RDFResource("http://www.waltdisney.com/mickey_mouse"),
+                new RDFResource("http://xmlns.com/foaf/0.1/age"),
+                new RDFTypedLiteral("85", RDFModelEnums.RDFDatatypes.XSD_INT))
+            );
+            rdfms.RemoveQuadruplesByContext(new RDFContext("http://www.waltdisney.com/"));
+            Assert.False(rdfms.ContainsQuadruple(contain));
+        }
+        [Fact]
+        public static void RemovingQuadrupleByLiteralTest()
+        {
+            RDFMemoryStore rdfms = StoreBuilder.CreateStore();
+            RDFQuadruple contain = (new RDFQuadruple(
+                new RDFContext("http://www.waltdisney.com/"),
+                new RDFResource("http://www.waltdisney.com/mickey_mouse"),
+                new RDFResource("http://xmlns.com/foaf/0.1/age"),
+                new RDFTypedLiteral("85", RDFModelEnums.RDFDatatypes.XSD_INT))
+            );
+            rdfms.RemoveQuadruplesByLiteral(new RDFTypedLiteral("85", RDFModelEnums.RDFDatatypes.XSD_INT));
+            Assert.False(rdfms.ContainsQuadruple(contain));
+        }
+
+        [Fact]
+        public static void RemovingQuadrupleBySubjectTest()
+        {
+            RDFMemoryStore rdfms = StoreBuilder.CreateStore();
+            RDFQuadruple contain = (new RDFQuadruple(
+                new RDFContext("http://www.waltdisney.com/"),
+                new RDFResource("http://www.waltdisney.com/mickey_mouse"),
+                new RDFResource("http://xmlns.com/foaf/0.1/age"),
+                new RDFTypedLiteral("85", RDFModelEnums.RDFDatatypes.XSD_INT))
+            );
+            rdfms.RemoveQuadruplesBySubject(new RDFResource("http://www.waltdisney.com/mickey_mouse"));
+            Assert.False(rdfms.ContainsQuadruple(contain));
         }
     }
 }
